@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalDesk | Document Review System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">L</div>
+            <div>
+                <h1>LegalDesk</h1>
+                <p>Legal Document Review System</p>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <span class="system-status">
+                <span class="status-dot"></span> System Active
+            </span>
+        </div>
+    </header>
+
+    <div class="page-layout">
+
+        <aside class="sidebar">
+            <p class="sidebar-heading">WORKSPACE</p>
+
+            <a href="#dashboard" class="nav-link active">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="#documents" class="nav-link">
+                <span>▤</span> All Documents
+            </a>
+
+            <a href="#addDocumentSection" class="nav-link">
+                <span>＋</span> Add Document
+            </a>
+
+            <div class="sidebar-note">
+                <div class="note-icon">✦</div>
+                <h3>Stay Organized</h3>
+                <p>Keep every legal document, review and update in one place.</p>
+            </div>
+
+            <div class="sidebar-footer">
+                <span class="footer-dot"></span>
+                LegalDesk Workspace
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <section id="dashboard">
+                <div class="welcome-row">
+                    <div>
+                        <p class="eyebrow">WORKSPACE OVERVIEW</p>
+                        <h2>Document Dashboard</h2>
+                        <p class="welcome-text">
+                            Manage legal documents and track their review progress.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="showAddFormBtn">
+                        + Add New Document
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Total Documents</span>
+                            <span class="stat-icon purple">▤</span>
+                        </div>
+                        <h3 id="totalCount">0</h3>
+                        <p>Documents in workspace</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Pending Review</span>
+                            <span class="stat-icon orange">◷</span>
+                        </div>
+                        <h3 id="pendingCount">0</h3>
+                        <p>Awaiting review</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Approved</span>
+                            <span class="stat-icon green">✓</span>
+                        </div>
+                        <h3 id="approvedCount">0</h3>
+                        <p>Successfully reviewed</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Changes Required</span>
+                            <span class="stat-icon red">!</span>
+                        </div>
+                        <h3 id="changesCount">0</h3>
+                        <p>Needs further attention</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="content-section" id="documents">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">DOCUMENT MANAGEMENT</p>
+                        <h2>All Documents</h2>
+                        <p class="section-description">
+                            Search, filter and manage your legal documents.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input type="text" id="searchInput"
+                            placeholder="Search documents, categories or reviewers...">
+                    </div>
+
+                    <select id="statusFilter">
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Changes Required">Changes Required</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DOCUMENT</th>
+                                <th>CATEGORY</th>
+                                <th>REVIEWER</th>
+                                <th>PRIORITY</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documentTable">
+                        </tbody>
+                    </table>
+
+                    <div id="emptyMessage" class="empty-message" style="display:none;">
+                        <div class="empty-icon">▤</div>
+                        <h3>No documents found</h3>
+                        <p>Try changing your search or add a new document.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section add-section" id="addDocumentSection">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">WORKSPACE MANAGEMENT</p>
+                        <h2 id="formHeading">Add New Document</h2>
+                        <p class="section-description">
+                            Enter the details of the legal document.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="documentForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="documentTitle">Document Title *</label>
+                            <input type="text" id="documentTitle"
+                                placeholder="e.g. Employment Agreement" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documentCategory">Category *</label>
+                            <select id="documentCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Agreement">Agreement</option>
+                                <option value="Policy">Policy</option>
+                                <option value="Legal Notice">Legal Notice</option>
+                                <option value="Compliance">Compliance</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="documentSummary">Document Summary</label>
+                            <textarea id="documentSummary" rows="3"
+                                placeholder="Write a short summary of this document..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documentReviewer">Assigned Reviewer *</label>
+                            <input type="text" id="documentReviewer"
+                                placeholder="Enter reviewer name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documentPriority">Priority</label>
+                            <select id="documentPriority">
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button" id="saveDocumentBtn">
+                            Save Document
+                        </button>
+
+                        <button type="button" class="secondary-button" id="cancelFormBtn">
+                            Cancel
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+            <section class="content-section details-section" id="detailsSection"
+                style="display:none;">
+
+                <div class="details-heading">
+                    <div>
+                        <p class="eyebrow">DOCUMENT INFORMATION</p>
+                        <h2>Document Details</h2>
+                    </div>
+                    <button class="close-button" id="closeDetailsBtn">✕</button>
+                </div>
+
+                <div id="detailsContent"></div>
+
+                <div class="details-controls">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="newDocumentStatus">Update Status</label>
+                            <select id="newDocumentStatus">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Changes Required">Changes Required</option>
+                            </select>
+                            <button type="button" class="small-button" id="updateStatusBtn">
+                                Update Status
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newReviewer">Assign Reviewer</label>
+                            <input type="text" id="newReviewer">
+                            <button type="button" class="small-button" id="updateReviewerBtn">
+                                Update Reviewer
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPriority">Update Priority</label>
+                            <select id="newPriority">
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <button type="button" class="small-button" id="updatePriorityBtn">
+                                Update Priority
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="detail-action-row">
+                        <button type="button" class="secondary-button" id="editDocumentBtn">
+                            Edit Document
+                        </button>
+                        <button type="button" class="delete-button" id="deleteDocumentBtn">
+                            Delete Document
+                        </button>
+                    </div>
+                </div>
+
+                <div class="extra-details-grid">
+
+                    <div class="detail-card">
+                        <h3>Document Tags</h3>
+                        <div id="tagsList" class="tags-list"></div>
+
+                        <div class="inline-form">
+                            <input type="text" id="newTag" placeholder="Enter a tag">
+                            <button type="button" class="small-button" id="addTagBtn">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <h3>Reviewer Comments</h3>
+                        <div id="commentsList" class="comments-list"></div>
+
+                        <div class="comment-form">
+                            <textarea id="newComment" rows="2"
+                                placeholder="Write a review comment..."></textarea>
+                            <button type="button" class="small-button" id="addCommentBtn">
+                                Add Comment
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="detail-card history-card">
+                    <h3>Document History</h3>
+                    <div id="historyList" class="history-list"></div>
+                </div>
+
+            </section>
+
+            <footer class="main-footer">
+                <p>© 2026 LegalDesk. Legal Document Review System.</p>
+                <p>Organized. Reviewed. Tracked.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
